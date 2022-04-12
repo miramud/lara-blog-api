@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Comment;
+use App\Models\Post;
+use App\Models\Forum;
+use App\Models\Like;
+
 
 
 class User extends Authenticatable
@@ -27,14 +32,19 @@ class User extends Authenticatable
     ];
 
     public function comment(){
-        return $this->belongsTo(Comment::class);
+        return $this->hasMany(Comment::class);
+    }
+
+    public function like(){
+        return $this->hasMany(Like::class);
     }
 
     public function post(){
-        return $this->belongsTo(Post::class);
+        return $this->hasMany(Post::class);
     }
+
     public function forum(){
-        return $this->belongsTo(Post::class);
+        return $this->hasMany(Forum::class);
     }
 
     /**

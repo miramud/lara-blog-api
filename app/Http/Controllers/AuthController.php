@@ -109,14 +109,16 @@ class AuthController extends Controller
             ], 403);
         }
 
+
         $user->comment()->delete();
         // // $user->forums()->delete();
         $user->post()->delete();
-        // $user->tokens()->delete();
-        // $user->delete();
+        $user->like()->delete();
+        $user->tokens()->delete();
+        $user->delete();
 
         return response([
-            'message' => 'User deleted.'
+            'message' => 'User deleted.',
         ], 200);
     }
 
