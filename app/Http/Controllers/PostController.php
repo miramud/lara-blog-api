@@ -40,12 +40,12 @@ class PostController extends Controller
             'body' => 'required|string'
         ]);
 
-        // $image = $this->saveImage($request->image, 'posts');
+        $image = $this->saveImage($request->image, 'posts');
 
         $post = Post::create([
             'body' => $attrs['body'],
             'user_id' => auth()->user()->id,
-            // 'image' => $image
+            'image' => $image
         ]);
 
         return response([

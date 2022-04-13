@@ -48,14 +48,17 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
 
     // PROTECTED ROUTES FOR FORUMS AND CATEGORIES
     Route::post('/forum', [ForumController::class, 'createForum']); // create new forum
-    Route::post('/forumcategory', [ForumCategoryController::class, 'createCategory']); // create new forum category
-    Route::get('/forum', [ForumController::class, 'createForum']); // get all forums
-    Route::get('/forumcategory', [ForumCategoryController::class, 'createCategory']); // get all forum categories
-    Route::get('/forum/{id}', [ForumController::class, 'createForum']); // get a single forum
-    Route::get('/forumcategory/{id}', [ForumCategoryController::class, 'createCategory']); // get a single forum categories
+    Route::get('/forum', [ForumController::class, 'getAllForums']); // get all forums
+    Route::get('/forum/{id}', [ForumController::class, 'getForum']); // get a single forum
+    Route::get('/forum/{id}/posts', [ForumController::class, 'getForumPosts']); // get all posts from a single forum
     Route::put('/forum/{id}', [ForumController::class, 'updateForum']); //update single forum
-    Route::put('/forumcategory/{id}', [ForumCategoryController::class, 'updateFCategory']); // update single forum category
     Route::delete('/forum/{id}', [ForumController::class, 'deleteForum']); // delete a forum
+
+    Route::post('/forumcategory', [ForumCategoryController::class, 'createCategory']); // create new forum category
+    Route::get('/forumcategory', [ForumCategoryController::class, 'getAllCategories']); // get all categories
+    Route::get('/forumcategory/{id}', [ForumCategoryController::class, 'getCategory']); // get a single forum categories
+    Route::get('/forumcategory/{id}/forums', [ForumCategoryController::class, 'getAllForums']); // get all forums from a category
+    Route::put('/forumcategory/{id}', [ForumCategoryController::class, 'updateCategory']); // update single forum category
     Route::delete('/forumcategory/{id}', [ForumCategoryController::class, 'deleteCategory']); // delete a forum category
 
     // COMMENTS
